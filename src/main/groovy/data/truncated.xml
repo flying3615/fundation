@@ -1,0 +1,42 @@
+<route><!--St Louis Zoo sample-->
+    <routepoint name='Asian Elephant'>
+        <latitude>38.63473</latitude>
+        <longitude></longitude>
+    </routepoint>
+    <routepoint name='Bactrian Camel'>
+        <latitude>38.63368</latitude>
+        <longitude></longitude>
+    </routepoint>
+    <routepoint name='Black Rhinoceros'>
+        <latitude>38.63408</latitude>
+        <longitude></longitude>
+    </routepoint>
+    <routepoint name='Cafe Restroom'>
+        <latitude>38.63533</latitude>
+        <longitude></longitude>
+    </routepoint>
+    <routepoint name='Polar Bear'>
+        <latitude>38.63677</latitude>
+        <longitude></longitude>
+    </routepoint>
+    <routepoint name='California Sea Lion'>
+        <latitude>38.63496</latitude>
+        <longitude></longitude>
+    </routepoint>
+    <routepoint name='Cheetah'>
+        <latitude>38.63421</latitude>
+        <longitude></longitude>
+    </routepoint>
+    <routepoint name='Grizzley Bear'>
+        <latitude>38.63633</latitude>
+        <longitude></longitude>
+    </routepoint>
+    <routepoint name='Jaguar'>
+        <latitude>38.63395</latitude>
+        <longitude></longitude>
+    </routepoint>
+    <routepoint name='Lion'>
+        <latitude>38.63347</latitude>
+        <longitude></longitude>
+    </routepoint>
+</route>
