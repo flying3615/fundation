@@ -10,10 +10,16 @@ class TumblrSeleniumSearch {
     static void main(args){
         //only ff can work???
         WebDriver driver = new FirefoxDriver();
-        driver.get("https://www.tumblr.com/search/奥运");
+        driver.get("https://www.tumblr.com/search/极品");
         //only get 4 elements at most?
         List<WebElement> title = driver.findElements(By.tagName("h3"));
-        title.each {println it.getText()}
+        title.each {
+            println "find posts in blog ${it.getText()}"
+            Downloader imageDownloader = new Downloader(new ImageDownloader())
+            imageDownloader.doDownload(it.getText())
+            Downloader videoDownloader = new Downloader(new VideoDownloader())
+            videoDownloader.doDownload(it.getText())
+        }
         driver.quit();
     }
 }
