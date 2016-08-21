@@ -17,14 +17,15 @@ class TumblrSeleniumSearch {
         driver.get("https://www.tumblr.com/search/极品");
         List<WebElement> title = driver.findElements(By.xpath("//div[@data-view-exists='true']"));
         Downloader downloader = new Downloader()
+        def imageDownLoaderType = new ImageDownloader()
+        def videoDownLoaderType = new VideoDownloader()
         title.each {WebElement it->
             def blog_url = it.getAttribute("data-tumblelog-url").substring(7)
             //trim "http://"
             println "find posts in blog ${blog_url}"
-
-            downloader.downLoadType = new ImageDownloader()
+            downloader.downLoadType = imageDownLoaderType
             downloader.doDownload(blog_url)
-            downloader.downLoadType = new VideoDownloader()
+            downloader.downLoadType = videoDownLoaderType
             downloader.doDownload(blog_url)
         }
         driver.quit();
