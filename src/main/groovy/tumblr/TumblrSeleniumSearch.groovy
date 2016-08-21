@@ -3,22 +3,29 @@ import org.openqa.selenium.By
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.firefox.FirefoxDriver
+
+import java.util.concurrent.TimeUnit
+
 /**
  * Created by liuyufei on 8/14/16.
  */
 class TumblrSeleniumSearch {
+
     static void main(args){
-        //only ff can work???
         WebDriver driver = new FirefoxDriver();
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.get("https://www.tumblr.com/search/极品");
-        //only get 4 elements at most?
-        List<WebElement> title = driver.findElements(By.tagName("h3"));
-        title.each {
-            println "find posts in blog ${it.getText()}"
-            Downloader imageDownloader = new Downloader(new ImageDownloader())
-            imageDownloader.doDownload(it.getText())
-            Downloader videoDownloader = new Downloader(new VideoDownloader())
-            videoDownloader.doDownload(it.getText())
+        List<WebElement> title = driver.findElements(By.xpath("//div[@data-view-exists='true']"));
+        Downloader downloader = new Downloader()
+        title.each {WebElement it->
+            def blog_url = it.getAttribute("data-tumblelog-url").substring(7)
+            //trim "http://"
+            println "find posts in blog ${blog_url}"
+
+            downloader.downLoadType = new ImageDownloader()
+            downloader.doDownload(blog_url)
+            downloader.downLoadType = new VideoDownloader()
+            downloader.doDownload(blog_url)
         }
         driver.quit();
     }
