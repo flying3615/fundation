@@ -14,7 +14,7 @@ class TumblrSeleniumSearch {
     static void main(args){
         WebDriver driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        driver.get("https://www.tumblr.com/search/极品");
+        driver.get("https://www.tumblr.com/search/cat");
         List<WebElement> title = driver.findElements(By.xpath("//div[@data-view-exists='true']"));
         Downloader downloader = new Downloader()
         def imageDownLoaderType = new ImageDownloader()
