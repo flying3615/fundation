@@ -1,4 +1,4 @@
-package rxjava.compose;
+package rxjava;
 
 import rx.Observable;
 import rx.schedulers.Schedulers;

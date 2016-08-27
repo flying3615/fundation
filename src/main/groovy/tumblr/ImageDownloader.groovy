@@ -14,9 +14,9 @@ class ImageDownloader implements DownLoadType{
                 def address = photo.alt_sizes[0].url
                 def fileName = address.tokenize('/')[-1]
                 println "ready to write new image ${fileName}"
-//                new File("${fileName}").withOutputStream { out ->
-//                    out << new URL(address).openStream()
-//                }
+                new File("${fileName}").withOutputStream { out ->
+                    out << new URL(address).openStream()
+                }
             }
         }
     }

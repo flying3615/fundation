@@ -3,6 +3,7 @@ package tumblr
 import groovyx.net.http.HttpResponseDecorator
 import groovyx.net.http.RESTClient
 import rx.Observable
+import rx.schedulers.Schedulers
 
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
@@ -22,16 +23,24 @@ class Downloader {
 
     def doDownload(title) {
         def path_posts_str = "v2/blog/${title}/posts/${downLoadType.type}"
-        getResp(path_posts_str).subscribe({downLoadType.download(it)})
+        println "ready to subscribe on ${downLoadType.type}"
+        getResp(path_posts_str)
+                .doOnNext({ println "emit ${it} at ${Thread.currentThread().getName()}" })
+                .observeOn(Schedulers.io())
+                .subscribe({
+                    println "receive ${it} at ${Thread.currentThread().getName()}";
+                    downLoadType.download(it)
+                })
     }
 
     def Observable<HttpResponseDecorator> getResp(path_api) {
         return Observable.create({ observer ->
-            executor.execute({
-                def response = forecastApi.get(['path': path_api, 'query': ['api_key': api_key, 'limit': 20]])
-                observer.onNext(response)
-                observer.onCompleted()
-            })
+//            executor.execute({
+//                def response = forecastApi.get(['path': path_api, 'query': ['api_key': api_key, 'limit': 20]])
+            def response = forecastApi.get(['path': path_api, 'query': ['api_key': api_key, 'limit': 20]])
+            observer.onNext(response)
+            observer.onCompleted()
+//            })
         })
     }
 

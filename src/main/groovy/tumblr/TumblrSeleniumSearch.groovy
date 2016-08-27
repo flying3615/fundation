@@ -23,8 +23,8 @@ class TumblrSeleniumSearch {
             def blog_url = it.getAttribute("data-tumblelog-url").substring(7)
             //trim "http://"
             println "find posts in blog ${blog_url}"
-            downloader.downLoadType = imageDownLoaderType
-            downloader.doDownload(blog_url)
+//            downloader.downLoadType = imageDownLoaderType
+//            downloader.doDownload(blog_url)
             downloader.downLoadType = videoDownLoaderType
             downloader.doDownload(blog_url)
         }
